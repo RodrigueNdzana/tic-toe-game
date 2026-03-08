@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tic-Tac-Toe</title>
+  <link rel="stylesheet" href="style/main.css" />
+</head>
+<body>
+
+  <div class="stars" id="stars"></div>
+
+  <div class="container">
+    <header>
+      <div class="title-wrap">
+        <span class="x-glyph">✕</span>
+        <h1>TIC<span>TAC</span>TOE</h1>
+        <span class="o-glyph">○</span>
+      </div>
+      <p class="subtitle">Two Players · One Board · No Mercy</p>
+    </header>
+
+    <div class="scoreboard">
+      <div class="score-card" id="score-x">
+        <div class="score-label">Player X</div>
+        <div class="score-value" id="x-score">0</div>
+      </div>
+      <div class="score-card draws">
+        <div class="score-label">Draws</div>
+        <div class="score-value" id="draw-score">0</div>
+      </div>
+      <div class="score-card" id="score-o">
+        <div class="score-label">Player O</div>
+        <div class="score-value" id="o-score">0</div>
+      </div>
+    </div>
+
+    <div class="turn-indicator" id="turn-indicator">
+      <span class="turn-dot"></span>
+      Player <strong id="current-player">X</strong>'s Turn
+    </div>
+
+    <div class="board" id="board">
+      <div class="cell" data-index="0"></div>
+      <div class="cell" data-index="1"></div>
+      <div class="cell" data-index="2"></div>
+      <div class="cell" data-index="3"></div>
+      <div class="cell" data-index="4"></div>
+      <div class="cell" data-index="5"></div>
+      <div class="cell" data-index="6"></div>
+      <div class="cell" data-index="7"></div>
+      <div class="cell" data-index="8"></div>
+    </div>
+
+    <div class="result-banner" id="result-banner">
+      <div class="result-text" id="result-text"></div>
+      <button class="btn-play-again" id="play-again">Play Again</button>
+    </div>
+
+    <button class="btn-reset" id="reset-scores">Reset Scores</button>
+  </div>
+
+  <script src="javascript/main.js"></script>
+</body>
+</html>
