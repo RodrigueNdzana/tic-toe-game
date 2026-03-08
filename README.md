@@ -1,6 +1,6 @@
 
 # ✕ Tic-Tac-Toe ○
-
+## live project: https://tic-toe-game-git-main-rodriguendzanas-projects.vercel.app/
 A sleek, modern Tic-Tac-Toe game built with pure HTML, CSS, and JavaScript — no frameworks, no dependencies.
 
 ![Game Preview](screenShots/gamePlay.png)
