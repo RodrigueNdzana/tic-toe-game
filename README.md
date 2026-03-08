@@ -26,7 +26,7 @@ This is a two-player Tic-Tac-Toe game featuring:
 2. Double-click `index.html` to open it in your browser
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/tic-tac-toe.git
+git clone https://github.com/RodrigueNdzana/tic-toe-game.git
 cd tic-tac-toe
 open index.html       # macOS
 start index.html      # Windows
