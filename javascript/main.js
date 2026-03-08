@@ -50,7 +50,15 @@ function handleCellClick(e) {
 
   board[idx] = currentPlayer;
   renderCell(e.currentTarget, currentPlayer);
-
+   const winner = checkWinner();
+  if (winner) {
+    endGame(winner);
+  } else if (board.every(Boolean)) {
+    endGame(null); // draw
+  } else {
+    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+    updateTurnUI();
+  }
   
 }
 function renderCell(cell, player) {
@@ -63,6 +71,77 @@ function renderCell(cell, player) {
   inner.className = 'cell-pop';
   inner.style.display = 'block';
   cell.appendChild(inner);
+}
+
+function checkWinner() {
+  for (const [a, b, c] of WIN_COMBOS) {
+    if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+      return { player: board[a], combo: [a, b, c] };
+    }
+  }
+  return null;
+}
+
+function endGame(result) {
+  gameOver = true;
+
+  if (result) {
+    const { player, combo } = result;
+    scores[player]++;
+    updateScoreDisplay();
+
+    // Highlight winning cells
+    combo.forEach(i => cells[i].classList.add('win'));
+
+    const color = player === 'X' ? '#ff4d6d' : '#4cc9f0';
+    resultText.style.color = color;
+    resultText.textContent = `Player ${player} Wins! 🎉`;
+    launchConfetti(color);
+  } else {
+    scores.D++;
+    updateScoreDisplay();
+    resultText.style.color = '#8888aa';
+    resultText.textContent = "It's a Draw!";
+  }
+
+  resultBanner.classList.add('show');
+}
+
+function updateTurnUI() {
+  currentPlayerEl.textContent = currentPlayer;
+  const color = currentPlayer === 'X' ? 'var(--x-color)' : 'var(--o-color)';
+  turnIndicator.querySelector('.turn-dot').style.background = color;
+  currentPlayerEl.style.color = color;
+
+  scoreX.classList.toggle('active-x', currentPlayer === 'X');
+  scoreO.classList.toggle('active-o', currentPlayer === 'O');
+}
+
+function updateScoreDisplay() {
+  xScoreEl.textContent = scores.X;
+  oScoreEl.textContent = scores.O;
+  drawScoreEl.textContent = scores.D;
+}
+
+function resetGame() {
+  board = Array(9).fill(null);
+  currentPlayer = 'X';
+  gameOver = false;
+
+  cells.forEach(cell => {
+    cell.textContent = '';
+    cell.innerHTML = '';
+    cell.className = 'cell';
+  });
+
+  resultBanner.classList.remove('show');
+  updateTurnUI();
+}
+
+function resetAll() {
+  scores = { X: 0, O: 0, D: 0 };
+  updateScoreDisplay();
+  resetGame();
 }
 
 
